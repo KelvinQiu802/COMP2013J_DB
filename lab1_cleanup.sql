@@ -1,0 +1,3 @@
+DROP TABLE q1;
+DROP TABLE item;
+DROP TABLE stocklist;
