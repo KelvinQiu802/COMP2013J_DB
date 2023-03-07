@@ -1,3 +1,5 @@
+-- This is comment
+
 DROP TABLE student;
 
 CREATE TABLE student (
