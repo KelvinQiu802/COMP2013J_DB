@@ -53,8 +53,12 @@ WHERE o.customernumber = c.customerNumber;
 Q10: List the names of all customers who have never placed an order.
 */
 SELECT customerName
-FROM customers AS c, orders AS o
-WHERE c.customerNumber = o.customerNumber AND o.orderNumber IS NOT NULL;
+FROM customers
+WHERE customerName NOT IN (
+  SELECT customerName
+  FROM customers AS c, orders AS o
+  WHERE c.customerNumber = o.customerNumber
+);
 
 /*
 Q11: Find all the customer names that end with “Co” or “Co.”.
@@ -74,7 +78,7 @@ WHERE e1.reportsTo = e2.employeeNumber AND e2.lastName = 'Bondur' AND e2.firstNa
 Q13: Insert two new product lines
 */
 INSERT INTO productlines (productLine, textDescription) VALUES ('Computers', 'We now sell models of classic computers too!');
-INSERT INTO productlines (productLine, textDescription) VALUES ('Helicopters', '  All kinds of choppers.');
+INSERT INTO productlines (productLine, textDescription) VALUES ('Helicopters', 'All kinds of choppers.');
 
 /*
 Q14: The employee named George Vanauf has moved to the Paris office. Make a change to the database to record this information.
@@ -85,4 +89,3 @@ UPDATE employees SET officeCode = (
   WHERE city = 'Paris'
 )
 WHERE lastName = 'Vanauf' AND firstName = 'George';
-
